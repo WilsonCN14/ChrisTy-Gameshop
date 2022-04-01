@@ -1,2 +1,2 @@
 # ChrisTy-Gameshop
-Employee portal for ChrisTy's Gameshop, a fake store selling video games. This project started in 2020 as a team project for a Web Development course. Our team code repository is set to private. With permission from my teammate, I am starting a new public respository with our code and updating it with my current knowledge of web development.
+Employee portal for ChrisTy's Gameshop, a fake store selling video games. This project was created in Jan-March 2021 for a group project in my Introduction to Databases course. My team's repository is set to private. With permission from my team, I am uploading our code in a public repository. 
