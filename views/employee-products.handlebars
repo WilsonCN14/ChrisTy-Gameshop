@@ -1,0 +1,124 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+            <a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+
+<div style="padding:0 16px">
+  <h1 id = "shopHeader">ChrisTy's Gameshop: Employee - Products</h1>
+</div>
+
+<div id="search">
+    <div id="id_search">
+        <div>
+            <h3>Search Produts by Title</h3>
+        </div>
+        <form id="product_id_search">
+            <input type="text" name="name" id="search_product_id" class="form_input">
+            <label for="search_product">Product Title</label>
+            <input type="submit" value="Search" id="employee_search_product" class="form_button">
+            <button onclick="/employee-products">Reset</button>
+        </form>
+    </div>
+
+    <div id="genre_search">
+        <div>
+            <h3>Search Produts by Genre</h3>
+        </div>
+        <form id="product_genre_search">
+            <div>
+                <input type="radio" name="genre" id="action" value="action">
+                <label for="action">Action</label>
+
+                <input type="radio" name="genre" id="adventure" value="adventure">
+                <label for="adventure">Adventure</label>
+
+                <input type="radio" name="genre" id="indie" value="indie">
+                <label for="indie">Indie</label>
+
+                <input type="radio" name="genre" id="sports" value="sports">
+                <label for="sports">Sports</label>
+
+                <input type="radio" name="genre" id="strategy" value="strategy">
+                <label for="strategy">Strategy</label>
+
+                <input type="submit" value="Search" id="submitButton" onclick="">
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--List of games section.  Employee should be able to add games to this section -->
+<div id="list_products">
+	<div>
+		<h3 id="listTitle"><b>Products:</b></h3>
+	</div>
+
+	{{#if product}}
+	<table style="width:100%">
+		<thead>
+			<tr>
+				<th>Product ID</th>
+				<th>Genre</th>
+				<th>Title</th>
+				<th>Publisher</th>
+				<th>Metacritic Score</th>
+				<th>Cost</th>
+                <th>Inventory</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each product}}
+			<tr>
+				<td>{{this.product_id}}</td>
+				<td>{{this.genre}}</td>
+				<td>{{this.name}}</td>
+				<td>{{this.publisher}}</td>
+				<td>{{this.metacritic_score}}</td>
+				<td>{{this.product_cost}}</td>
+                <td>{{this.inventory}}</td>
+				<td></td>
+			</tr>
+			{{/each}}
+            <tr>
+                <td></td>
+                <td class="genre">
+                    <select id="genre" name="genre" form="new_product">
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Indie">Indie</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Strategy">Strategy</option>
+                    </select></td>
+                <td><input type="text" placeholder="Title" name="name" form="new_product" required></td>
+                <td><input type="text" placeholder="Publisher" name="publisher"form="new_product" required></td>
+                <td><input type="number" min=0 value=0 max=100 name="metacritic_score" form="new_product" required></td>
+                <td><input type="number" min=0 value=0 step=0.01 name="product_cost" form="new_product" required></td>
+                <td><input type="number" min=0 value=0 name="inventory" form="new_product" required></td>
+                <td><button type="submit" form="new_product">Add New Product</button></td>
+            </tr>
+		</tbody>	
+	</table>
+	{{/if}}
+</div>
+
+<!-- Form for inserting a new row -->
+<form action="/create-product" method="POST" id="new_product"></form>
+
+
+<style type="text/css">
+  @import url("/stylesheets/employee-products.css");
+</style>

@@ -1,0 +1,85 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+            <a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div style="padding:0 16px">
+  <h1 id = "shopHeader">ChrisTy's Gameshop: Employee - Addresses</h1>
+</div>
+
+<div id="search">
+	<div>
+		<h3>Search Street Address</h3>
+	</div>
+	<form id="address_search">
+		<input type="text" name="street_address" id="search_address_id" class="form_input">
+		<label for="search_address">Street Address</label>
+
+		<input type="submit" value="Search" id="employee_search_address" class="form_button">
+		<button onclick="/employee-addresses">Reset</button>
+	</form>
+	
+</div>
+
+<!--List of games section.  Employee should be able to add games to this section -->
+<div id="list_orders">
+	<div>
+		<h3 id="listTitle"><b>Addresses:</b></h3>
+	</div>
+
+	{{#if address}}
+	<table style="width:100%" id="addressTable">
+		<thead>
+			<tr>
+				<th>Address ID</th>
+				<th>Street Address</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Zip Code</th>
+                <th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each address}}
+			<tr>
+				<td>{{this.address_id}}</td>
+				<td>{{this.street_address}}</td>
+				<td>{{this.city}}</td>
+				<td>{{this.state}}</td>
+				<td>{{this.zip_code}}</td>
+				<td><button onclick="deleteButton(this)">Delete Address</button></td>
+			</tr>
+			{{/each}}
+            <tr>
+                <td></td>
+                <td><input type="text" name="street_address" placeholder="Street Address" form="new_address" required></td>
+                <td><input type="text" name="city" placeholder="City" form="new_address" required></td>
+                <td><input type="text" name="state" placeholder="State" form="new_address" required></td>
+                <td><input type="number" name="zip_code" placeholder="Zip Code" form="new_address" required></td>
+                <td><button type="submit" form="new_address">Add New Address</button></td>
+            </tr>
+		</tbody>	
+	</table>
+	{{/if}}
+</div>
+
+<!-- Form for inserting a new row -->
+<form action="/create-address" method="POST" id="new_address"></form>
+
+<style type="text/css">
+  @import url("/stylesheets/employee-addresses.css");
+</style>

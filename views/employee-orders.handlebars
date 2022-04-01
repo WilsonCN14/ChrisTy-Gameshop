@@ -1,0 +1,105 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+        	<a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+
+<div style="padding:0 16px">
+  <h1 id = "shopHeader">ChrisTy's Gameshop: Employee - Orders</h1>
+</div>
+
+<div id="search">
+	<div>
+		<h3>Search Orders by ID</h3>
+	</div>
+	<form id="order_search">
+		<input type="number" name="order_id" id="search_order_id" class="form_input" min="0">
+		<label for="search_order">Order ID</label>
+
+		<input type="submit" value="Search" id="employee_search_order" class="form_button">
+		<button onclick="/employee-orders">Reset</button>
+	</form>
+	
+</div>
+
+<!--List of games section.  Employee should be able to add games to this section -->
+<div id="list_orders">
+	<div>
+		<h3 id="listTitle"><b>Orders:</b></h3>
+	</div>
+
+	{{#if orders}}
+	<table style="width:100%">
+		<thead>
+			<tr>
+				<th>Order ID</th>
+				<th>Customer ID</th>
+				<th>Address ID</th>
+				<th>Date</th>
+				<th>Rewards Points Used</th>
+				<th>Rewards Points Gained</th>
+				<th>Shipping Cost</th>
+				<th>Tax</th>
+				<th>Total Cost</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each orders}}
+			<tr>
+				<td>{{this.order_id}}</td>
+				<td>{{this.customer_id}}</td>
+				<td>{{this.address_id}}</td>
+				<td>{{this.trueDate}}</td>
+				<td>{{this.rewards_points_used}}</td>
+				<td>{{this.rewards_points_gained}}</td>
+				<td>{{this.shipping_cost}}</td>
+				<td>{{this.tax}}</td>
+				<td>{{this.total_cost}}</td>
+				<td><button type="submit" name="order_id" value={{this.order_id}} form="update_order_form">Update</button></td>
+			</tr>
+			{{/each}}
+            <tr>
+                <td></td>
+				<td><select name="customer_id" id="customer_id" form="new_order">
+						{{#each customerdrop}}
+						<option value={{this.customer_id}}>{{this.customer_id}}</option>
+						{{/each}}
+					</select></td>
+				<td><select name="address_id" id="address_id" form="new_order">
+						{{#each addressdrop}}
+						<option value={{this.address_id}}>{{this.address_id}}</option>
+						{{/each}}
+					</select></td></td>
+                <td><input type="date" name="date" form="new_order" required></td>
+                <td><input type="number" min=0 value=0 name="rewards_points_used" form="new_order"></td>
+                <td><input type="number" min=0 value=0 name="rewards_points_gained" form="new_order"></td>
+                <td><input type="number" min=0 value=0 step=0.01 name="shipping_cost" form="new_order"></td>
+                <td><input type="number" min=0 value=0 step=0.01 name="tax" form="new_order"></td>
+                <td><input type="number" min=0 value=0 step=0.01 name="total_cost" form="new_order"></td>
+                <td><button type="submit" form="new_order">Add New Order</button></td>
+            </tr>
+		</tbody>	
+	</table>
+	{{/if}}
+</div>
+
+<!-- Forms for creating and updating orders -->
+<form action="/create-order" method="POST" id="new_order"></form>
+<form action="/update-order-form" method="GET" id="update_order_form"></form>
+
+<style type="text/css">
+  @import url("/stylesheets/employee-orders.css");
+</style>

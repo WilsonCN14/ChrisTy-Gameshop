@@ -1,0 +1,100 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+            <a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div style="padding:0 16px">
+  <h1 id = "shopHeader">ChrisTy's Gameshop: Employee - Line Items</h1>
+</div>
+
+<div id="search">
+	<div>
+		<h3>Search Line Items</h3>
+	</div>
+	{{#if dropdown}}
+	<form action=>
+		<label for="order">Choose an Order ID:</label>
+		<select name="order_id" id="order">
+			<option value='all'>All</option>
+			{{#each dropdown}}
+			<option value={{this.order_id}}>{{this.order_id}}</option>
+			{{/each}}
+		</select>
+		<br><br>
+		<input type="submit" value="Submit">
+		<button onclick="/employee-line_items">Reset</button>
+	</form>
+	{{/if}}
+	
+</div>
+
+<div id="line_items">
+	<div>
+		<h3 id="listTitle"><b>Line Items:</b></h3>
+	</div>
+
+	{{#if line}}
+	<table style="width:100%">
+		<thead>
+			<tr>
+				<th>Order ID</th>
+				<th>Product ID</th>
+				<th>Cost</th>
+				<th>Quantity</th>
+                <th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each line}}
+			<tr>
+				<td>{{this.order_id}}</td>
+				<td>{{this.product_id}}</td>
+				<td>{{this.line_item_cost}}</td>
+				<td>{{this.quantity}}</td>
+                <td></td>
+			</tr>
+			{{/each}}
+            <tr>
+				<td><select name="order_id" id="order" form="new_line_item">
+						{{#each orderdrop}}
+						<option value={{this.order_id}}>{{this.order_id}}</option>
+						{{/each}}
+					</select></td>
+				<td><select name="product_id" id="product" form="new_line_item">
+						{{#each proddrop}}
+						<option value={{this.product_id}}>{{this.product_id}}</option>
+						{{/each}}
+					</select></td></td>
+                <td><input type="number" min=0 value=0 step=0.01 name="line_item_cost" form="new_line_item"></td>
+                <td><input type="number" min=0 value=0 name="quantity" form="new_line_item"></td>
+                <td><button type="submit" form="new_line_item">Add New Relationship</button></td>
+			</tr>
+		</tbody>	
+	</table>
+	{{/if}}
+</div>
+
+<!-- Form creates a new row -->
+<form action="/create-line-item" method="POST" id="new_line_item"></form>
+
+<div id="tip">
+    <p class="text">Tip: When adding a new row, make sure the Order ID and Product ID combination is not already in database or else it will not be added.</p>
+</div>
+
+<style type="text/css">
+  @import url("/stylesheets/employee-line_items.css");
+</style>

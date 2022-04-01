@@ -1,0 +1,60 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+        	<a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+<div style="padding:0 16px">
+	<h1 id = "welcome"> Welcome To: </h1>  
+	<h1 id = "shopHeader">ChrisTy's Gameshop: Employee</h1>
+</div>
+
+<div id="container">
+	<img src="images/v_game.jpg" id="homepage_jpg" title="Image Source: https://i.pcmag.com/imagery/lineups/06PiprC5eiYhlpaNS6N0sbP-1.1569492872.fit_lim.size_1200x630.jpg">
+</div>
+<!-- Redirect page button-->
+<p class="text">Please direct to the correct employee page!</p>
+<div class="row">
+	<div class="column">
+	<button class="button button1" onclick="location.href='/employee-customers'"><span>Customers</span></button>
+	</div>
+
+	<div class="column">
+	<button class="button button2" onclick="location.href='/employee-addresses'"><span>Addresses</span></button>
+	</div>
+
+	<div class="column">
+	<button class="button button3" onclick="location.href='/employee-orders'"><span>Orders</span></button>
+	</div>
+
+	<div class="column">
+	<button class="button button4" onclick="location.href='/employee-products'"><span>Add Product</span></button>
+	</div>
+
+	<div class="column">
+	<button class="button button5" onclick="location.href='/employee-c_a'"><span>Customer Addresses</span></button>
+	</div>
+
+	<div class="column">
+	<button class="button button6" onclick="location.href='/employee-line_items'"><span>Line Items</span></button>
+	</div>
+</div>
+
+
+<style type="text/css">
+  @import url("/stylesheets/employee-direct.css");
+</style>
+
+
+
+

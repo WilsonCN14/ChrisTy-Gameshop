@@ -1,0 +1,129 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+        	<a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+<div style="padding:0 16px">
+  <h1 id = "shopHeader">ChrisTy's Gameshop</h1>
+</div>
+
+<div>
+	<h4 id="welcome">Welcome Back!</h4>
+</div>
+<!-- Start of popular games section.  This table displays the top 5 games in the database with the highest metacritic score--> 
+<div id="popular">
+	<div>
+		<h3 id="popularTitle"><b>Popular Games:</b></h3>
+		<p class="text">Current trending and popular games!</p>
+	</div>
+
+	{{#if popular}}
+	<table style="width:100%">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Genre</th>
+				<th>Publisher</th>
+				<th>Metacritic Score</th>
+				<th>Cost</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each popular}}
+			<tr>
+				<td style="display: none" id="popular_id">{{this.product_id}}</td>
+				<td id="popular_name">{{this.name}}</td>
+				<td id="popular_genre">{{this.genre}}</td>
+				<td id="popular_publisher">{{this.publisher}}</td>
+				<td id="popular_score">{{this.metacritic_score}}</td>
+				<td id="popular_cost">{{this.product_cost}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	{{/if}}
+
+</div>
+
+
+<!-- This section will display all of the current games and allows the user to search by genre -->
+<div id="list_games">
+	<div>
+		<h3 id="listTitle"><b>Search Our Current Products By Genre:</b></h3>
+		<p class="text">Choose the genre you would like to search by!</p>
+		<form id="product_search">
+			<div>
+				<input type="radio" name="genre" id="all" value="all">
+				<label for="all">All</label>
+
+				<input type="radio" name="genre" id="action" value="action">
+				<label for="action">Action</label>
+
+				<input type="radio" name="genre" id="adventure" value="adventure">
+				<label for="adventure">Adventure</label>
+
+				<input type="radio" name="genre" id="indie" value="indie">
+				<label for="indie">Indie</label>
+
+				<input type="radio" name="genre" id="sports" value="sports">
+				<label for="sports">Sports</label>
+
+				<input type="radio" name="genre" id="strategy" value="strategy">
+				<label for="strategy">Strategy</label>
+			</div>
+			<br>
+			<div id="subHolder">
+				<input type="submit" value="Submit" id="submitButton" onclick="">
+			</div>
+		</form>
+	</div>
+
+
+	{{#if product}}
+	<table style="width:100%">
+		<thead>
+			<tr>
+				<th>Genre</th>
+				<th>Title</th>
+				<th>Publisher</th>
+				<th>Metacritic Score</th>
+				<th>Cost</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each product}}
+			<tr>
+				<td style="display: none" id="product_id">{{this.product_id}}</td>
+				<td id="product_genre">{{this.genre}}</td>
+				<td id="product_name">{{this.name}}</td>
+				<td id="product_publisher">{{this.publisher}}</td>
+				<td id="product_score">{{this.metacritic_score}}</td>
+				<td id="product_cost">{{this.product_cost}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	{{/if}}
+</div>
+<br><br><br>
+
+
+<style type="text/css">
+  @import url("/stylesheets/customer.css");
+</style>
+
+
+	

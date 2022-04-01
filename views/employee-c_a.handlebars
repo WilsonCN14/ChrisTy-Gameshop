@@ -1,0 +1,94 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+            <a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div style="padding:0 16px">
+  <h1 id = "shopHeader">ChrisTy's Gameshop: Employee - Customer_Addresses</h1>
+</div>
+
+<div id="search">
+	<div>
+		<h3>Search Customer_Addresses</h3>
+	</div>
+	{{#if dropdown}}
+	<form action=>
+		<label for="customer">Choose a Customer ID:</label>
+		<select name="customer_id" id="customer">
+			<option value="all">All</option>
+			{{#each dropdown}}
+			<option value={{this.customer_id}}>{{this.customer_id}}</option>
+			{{/each}}
+		</select>
+		<br><br>
+		<input type="submit" value="Submit">
+		<button onclick="/employee-c_a">Reset</button>
+	</form>
+	{{/if}}
+	
+</div>
+
+<div id="customer_addresses">
+	<div>
+		<h3 id="listTitle"><b>Customer_Addresses:</b></h3>
+	</div>
+
+	{{#if c_a}}
+	<table style="width:100%">
+		<thead>
+			<tr>
+				<th>Customer ID</th>
+				<th>Address ID</th>
+                <th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each c_a}}
+			<tr>
+				<td>{{this.customer_id}}</td>
+				<td>{{this.address_id}}</td>
+				<td></td>
+			</tr>
+			{{/each}}
+            <tr>
+				<td><select name="customer_id" id="customer" form="new_customer_address">
+						{{#each customerdrop}}
+						<option value={{this.customer_id}}>{{this.customer_id}}</option>
+						{{/each}}
+					</select></td>
+				<td><select name="address_id" id="address" form="new_customer_address">
+						{{#each addressdrop}}
+						<option value={{this.address_id}}>{{this.address_id}}</option>
+						{{/each}}
+					</select></td>
+                <td><button type="submit" form="new_customer_address">Add New Relationship</button></td>
+			</tr>
+		</tbody>	
+	</table>
+	{{/if}}
+</div>
+
+<!-- Form that adds a new row -->
+<form action="/create-customer-address" method="POST" id="new_customer_address"></form>
+
+<div id="tip">
+    <p class="text">Tip: When adding a new row, make sure the Customer Id and Address ID combination is not already in database or else it will not be added.</p>
+</div>
+
+<style type="text/css">
+  @import url("/stylesheets/employee-c_a.css");
+</style>

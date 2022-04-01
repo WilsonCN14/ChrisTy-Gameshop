@@ -1,0 +1,99 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+        	<a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+
+<div style="padding:0 16px">
+  <h1 id = "shopHeader">Update Order</h1>
+</div>
+
+<div id="update_table">
+	<div>
+		<p id="instructions">Fill out the table to update the order or click <a href="/employee-orders">here</a> to go back to the Orders Page</p>
+	</div>
+    </br>
+
+	{{#if orders}}
+	<table style="width:100%">
+		<thead>
+			<tr>
+				<th>Order ID</th>
+				<th>Customer ID</th>
+				<th>Address ID</th>
+				<th>Date</th>
+				<th>Rewards Points Used</th>
+				<th>Rewards Points Gained</th>
+				<th>Shipping Cost</th>
+				<th>Tax</th>
+				<th>Total Cost</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each orders}}
+			<tr>
+				<td>{{this.order_id}}</td>
+				<td>{{this.customer_id}}</td>
+				<td>{{this.address_id}}</td>
+				<td>{{this.trueDate}}</td>
+				<td>{{this.rewards_points_used}}</td>
+				<td>{{this.rewards_points_gained}}</td>
+				<td>{{this.shipping_cost}}</td>
+				<td>{{this.tax}}</td>
+				<td>{{this.total_cost}}</td>
+				<td></td>
+			</tr>
+			{{/each}}
+            <tr>
+                {{#each orders}}
+                <td>{{this.order_id}}</td>
+				<td><select name="customer_id" id="customer_id" form="update_order">
+                        <option value={{this.customer_id}}>{{this.customer_id}}</option>
+                {{/each}}
+                        <option value="">Remove Customer ID</option>
+						{{#each customerdrop}}
+						<option value={{this.customer_id}}>{{this.customer_id}}</option>
+						{{/each}}
+					</select></td>
+                {{#each orders}}
+				<td><select name="address_id" id="address_id" form="update_order">
+                        <option value={{this.address_id}}>{{this.address_id}}</option>
+                {{/each}}
+						{{#each addressdrop}}
+						<option value={{this.address_id}}>{{this.address_id}}</option>
+						{{/each}}
+					</select></td></td>
+                {{#each orders}}
+                    <td><input type="date" name="date" value={{this.trueDate}} form="update_order"></td>
+                    <td><input type="number" min=0 value={{this.rewards_points_used}} name="rewards_points_used" form="update_order"></td>
+                    <td><input type="number" min=0 value={{this.rewards_points_gained}} name="rewards_points_gained" form="update_order"></td>
+                    <td><input type="number" min=0 value={{this.shipping_cost}} step=0.01 name="shipping_cost" form="update_order"></td>
+                    <td><input type="number" min=0 value={{this.tax}} step=0.01 name="tax" form="update_order"></td>
+                    <td><input type="number" min=0 value={{this.total_cost}} step=0.01 name="total_cost" form="update_order"></td>
+                    <td><button type="submit" name="order_id" value={{this.order_id}} form="update_order">Update Order</button></td>
+                {{/each}}
+            </tr>
+		</tbody>	
+	</table>
+	{{/if}}
+</div>
+
+<!-- Forms for updating new order-->
+<form action="/update-order" method="POST" id="update_order"></form>
+
+<style type="text/css">
+  @import url("/stylesheets/update-order-form.css");
+</style>

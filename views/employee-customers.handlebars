@@ -1,0 +1,83 @@
+<div class="navbar">
+    <a href="/">Homepage</a>
+    <div class="dropdown">
+        <button class="dropbutton">Employee &darr;</button>
+        <div class="dropdowncontent">
+            <a href="/customer">Customer Experience</a>
+            <a href="/employee-customers">Customers Table</a>
+            <a href="/employee-addresses">Addresses Table</a>
+            <a href="/employee-orders">Orders Table</a>
+            <a href="/employee-products">Products Table</a>
+            <a href="/employee-c_a">Customer_Addresses Table</a>
+            <a href="/employee-line_items">Line_Items Table</a>
+        </div>
+    </div>
+</div>
+
+
+<div style="padding:0 16px">
+  <h1 id = "shopHeader">ChrisTy's Gameshop: Employee - Customers</h1>
+</div>
+
+<div id="search">
+	<div>
+		<h3>Search Customers</h3>
+	</div>
+	<form id="customer_search">
+		<input type="number" name="customer_id" id="search_customer_id" class="form_input" min="0">
+		<label for="search_customer">Customer ID</label>
+
+		<input type="submit" value="Search" id="employee_search_customer" class="form_button">
+		<button onclick="/employee-customers">Reset</button>
+	</form>
+</div>
+
+<!--Customers table -->
+<div id="list_orders">
+	<div>
+		<h3 id="listTitle"><b>Customers:</b></h3>
+	</div>
+
+	{{#if customer}}
+	<table style="width:100%">
+		<thead>
+			<tr>
+				<th>Customer ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Rewards Points</th>
+				<th>Email</th>
+                <th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each customer}}
+			<tr>
+				<td>{{this.customer_id}}</td>
+				<td>{{this.first_name}}</td>
+				<td>{{this.last_name}}</td>
+				<td>{{this.rewards_points}}</td>
+				<td>{{this.email}}</td>
+                <td></td>
+			</tr>
+			{{/each}}
+            <tr>
+                <td></td>
+                <td><input type="text" name="first_name" placeholder="First Name" form="new_customer" required></td>
+                <td><input type="text" name="last_name" placeholder="Last Name" form="new_customer" required></td>
+                <td><input type="number" value="0" min="0" name="rewards_points" placeholder="Rewards Points" form="new_customer"></td>
+                <td><input type="text" name="email" placeholder="Email" form="new_customer"></td>
+                <td><button type="submit" form="new_customer">Add New Customer</button></td>
+            </tr>
+		</tbody>	
+	</table>
+	{{/if}}
+</div>
+
+<!-- Form for inserting a new row -->
+<form action="/create-customer" method="POST" id="new_customer"></form>
+
+<style type="text/css">
+  @import url("/stylesheets/employee-customers.css");
+</style>
